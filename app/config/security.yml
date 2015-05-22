@@ -9,16 +9,13 @@ security:
         ROLE_ADMIN: [ROLE_USER]
  
     providers:
-        in_memory:
-            memory:
-                users:
-                    mario:  { password: 123456, roles: [ 'ROLE_USER' ] }
-                    analista.desarrollo@hotmail.com: { password: 123456, roles: [ 'ROLE_ADMIN' ] }            
+        user_db:
+            entity: { class: clima\FrontendBundle\Entity\User, property: username }
  
     firewalls:
         main:
             pattern: /.*
-            provider: in_memory
+            provider: user_db
             form_login:
                 login_path: /login
                 check_path: /login_check
