@@ -1,3 +1,7 @@
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
+clima_frontend:
+    resource: "@climaFrontendBundle/Resources/config/routing.yml"
+    prefix:   /
+
+
+
+

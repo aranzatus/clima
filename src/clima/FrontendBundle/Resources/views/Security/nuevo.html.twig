@@ -1,0 +1,25 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+            
+    <div class="paa">
+        
+        {{ form_start(formUsuario, { 'attr': {'class': 'form-horizontal'} }) }}
+        {{ form_errors(formUsuario) }}
+            <h2 align="center">Usuario Nuevo</h2>
+            {{ form_widget(formUsuario.username, { 'attr': {'placeholder': 'Ingrese Email','class': 'form-control'}}) }}
+                {% if form_errors(formUsuario.username) %}
+                    <div class="alert alert-danger" role="alert">{{ form_errors(formUsuario.username) }}</div>
+                {% endif %}       
+            {{ form_widget(formUsuario.password, { 'attr': {'placeholder': 'Ingrese password','class': 'form-control'}}) }}
+            {{ form_widget(formUsuario.nombreCorto, { 'attr': {'placeholder': 'Ingrese Nombre','class': 'form-control'}}) }}
+            {{ form_widget(formUsuario.role, { 'attr': {'placeholder': 'Ingrese Nombre','class': 'form-control'}}) }}
+            {{ form_widget(formUsuario.save, { 'attr': {'class': 'btn btn-lg btn-success btn-block'}}) }}
+                <input type="button" value="Volver" onClick=" window.location.href='{{ path('clima_usuarios_listar')}}' " class="btn btn-lg btn-primary btn-block"></td>
+        
+    
+    {{ form_rest(formUsuario) }}
+    {{ form_end(formUsuario) }}
+       
+    </div>
+{% endblock %}

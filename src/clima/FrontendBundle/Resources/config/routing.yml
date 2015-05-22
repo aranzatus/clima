@@ -1,0 +1,26 @@
+# Acceso Autenticación
+login:
+    pattern:   /login
+    defaults:  { _controller: climaFrontendBundle:Security:login }
+    
+login_check:
+    pattern:   /login_check
+
+logout:
+    path:   /logout
+    
+clima_inicio:
+    path:     /
+    defaults: { _controller: climaFrontendBundle:Default:index }
+    
+clima_usuarios_listar:
+    path:     /usuarios/listar
+    defaults: { _controller: climaFrontendBundle:Usuarios:listar }    
+
+clima_usuarios_nuevo:
+    path:     /usuarios/nuevo
+    defaults: { _controller: climaFrontendBundle:Usuarios:nuevo }
+    
+clima_usuarios_editar:
+    path:     /usuarios/editar/{id}
+    defaults: { _controller: climaFrontendBundle:Usuarios:editar }    

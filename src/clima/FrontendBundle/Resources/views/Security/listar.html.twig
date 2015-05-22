@@ -1,0 +1,38 @@
+{% extends '::base.html.twig' %}
+ 
+{% block body %}
+    <div class="container">
+    {{ form_start(form, { 'attr': {'class': 'form-horizontal'} }) }}
+    {{ form_errors(form) }} 
+    <table class="table table-bordered">
+        <tr>
+            
+            <th>Id</th>
+            <th>{{ knp_pagination_sortable(arUsuarios, 'username', 'nombreCorto') }}</th> 
+            <th>Nombre Corto</th>
+            <th>Rol</th>
+            <th>Email</th>
+            <th></th>
+        </tr>
+        
+            {%for arUsuarios in arUsuarios %}
+               <tr>
+                <td>{{arUsuarios.id}}</td>
+                <td>{{arUsuarios.username}}</td>
+                <td>{{arUsuarios.nombreCorto}}</td>
+                <td>{{arUsuarios.role}}</td>
+                <td>{{arUsuarios.email}}</td>
+                <td><a href="{{ path('clima_usuarios_editar',{'id': arUsuarios.id})}}">Editar</a></td>
+                <td><input type="checkbox" name="ChkSeleccionar[]" value="{{ arUsuarios.id }}" /></td>
+            {%endfor%}
+            </tr>
+            <tr>          
+                <td colspan="7" align="right">{{ form_widget(form.BtnEliminar, { 'attr': {'class': 'btn btn-danger btn-sm'} }) }}</td> 
+            </tr>    
+        
+    </table>
+    {{ knp_pagination_render(arUsuarios) }}
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
+    </div>
+{% endblock %}

@@ -2,12 +2,125 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}JG Efectivos!{% endblock %}</title>
+        {% block stylesheets %}
+            <link href="{{ asset('bootstrap-3.3.2-dist/css/bootstrap.css') }}" type="text/css" rel="stylesheet" />
+            <link href="{{ asset('css/jquery-ui.css') }}" type="text/css" rel="stylesheet" /> 
+            <link href="{{ asset('css/general.css') }}" rel="stylesheet" />
+            <link href="{{ asset('css/menu.css') }}" rel="stylesheet" />
+            <link href="{{ asset('csspersonalizado/styles.css') }}" type="text/css" rel="stylesheet" />
+        {% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('js/jquery-1.10.2.min.js') }}"></script>
+            <script src="{{ asset('js/jquery-ui.js') }}"></script>
+            <script src="{{ asset('bootstrap-3.3.2-dist/js/bootstrap.js') }}"></script>
+            <script src="{{ asset('js/general.js') }}"></script> 
+        {% endblock %}            
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+     
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{ path('clima_inicio') }}">Frontend!</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Base <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-submenu">
+                            <a tabindex="-1" href="#">General</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="">Terceros</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a tabindex="-1" href="#">Inventario</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="">Documentos</a></li>
+                                <li><a href="">Lista precios</a></li>
+                                <li><a href="">Lista costos</a></li>
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">Productos</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="">Lista</a></li>
+                                        <li><a href="">Marcas</a></li>
+                                        <li><a href="">Unidades medida</a></li>
+                                        <li><a href="">Lineas</a></li>
+                                        <li><a href="">Grupos</a></li>
+                                        <li><a href="">Subgrupos</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="">Bodegas</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a tabindex="-1" href="#">Transporte</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="">Rutas</a></li>
+                                <li><a href="">Conductores</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a tabindex="-1" href="#">Recursos humanos</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="">Centros de costo</a></li>
+                                <li><a href="">Empleados</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                
+               <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Procesos <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-submenu">
+                            <a tabindex="-1" href="#">Usuarios</a>
+                            <a tabindex="-1" href="#">Otro</a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="{{ path('clima_usuarios_listar') }}">Listar</a>
+                                    <a href="{{ path('clima_usuarios_nuevo') }}">Nuevo</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> {{ app.user.username }}<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Configuracion</a></li>                        
+                        <li class="divider"></li>
+                        <li><a href="{{ path('logout') }}">Salir</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% block body %}
+            {{ render(controller('BrasaGeneralBundle:Default:menu')) }}
+            {% for flashMessage in app.session.flashbag.get('informacion') %}
+                <div id="informacion" class="alert alert-info fade in" >
+                     <button type="button" class="close" data-dismiss="alert">&times;</button>
+                     <p>{{ flashMessage }}</p>
+                 </div>                
+            {% endfor %} 
+            {% for flashMessage in app.session.flashbag.get('error') %}
+                <div id="error" class="alert alert-danger fade in" >
+                     <button type="button" class="close" data-dismiss="alert">&times;</button>
+                     <p>{{ flashMessage }}</p>
+                 </div> 
+            {% endfor %}        
+            {% block content %}
+
+            {% endblock %}         
+        {% endblock %}
     </body>
+    
 </html>
