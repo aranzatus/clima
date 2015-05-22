@@ -24,3 +24,7 @@ clima_usuarios_nuevo:
 clima_usuarios_editar:
     path:     /usuarios/editar/{id}
     defaults: { _controller: climaFrontendBundle:Usuarios:editar }    
+
+registro:
+    pattern:   /registro
+    defaults:  { _controller: climaFrontendBundle:Usuarios:nuevo }    

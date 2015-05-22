@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\SecurityContext;
 class UsuariosController extends Controller {
 
- public function listarAction() {
+    public function listarAction() {
         $em = $this->getDoctrine()->getManager();
         $request = $this->getRequest();
         $paginator  = $this->get('knp_paginator');
@@ -39,46 +39,28 @@ class UsuariosController extends Controller {
            
         ));
     }
-   
- public function nuevoAction() {
-        $em = $this->getDoctrine()->getManager();
+    
+    public function nuevoAction() {
+        $em = $this->getDoctrine()->getEntityManager();
         $request = $this->getRequest();
-        $arUsuario = new \clima\FrontendBundle\Entity\User();
-        $formUsuario = $this->createFormBuilder($arUsuario)        
-            ->add('username','email')
-            ->add('password','password')
-            ->add('nombreCorto','text')
-            ->add('role', 'choice', array('choices' => array('' => 'Seleccione el Rol', 'admin' => 'Administrador','user'=>'Usuario')))
-            ->add('nombreCorto','text')
-            ->add('isActive','hidden', array('data' => 1))
-            ->add('save', 'submit', array('label'  => 'Guardar'))
-            ->getForm();
-        $formUsuario->handleRequest($request);
-        
-        if ($formUsuario->isValid())
-        {
-            // guardar la tarea en la base de datos
+        if ($request->getMethod() == 'POST') {            
+            $arrControles = $request->request->All();
+            $arUsuario = new \clima\FrontendBundle\Entity\User();            
             $factory = $this->get('security.encoder_factory');                        
             $encoder = $factory->getEncoder($arUsuario);            
-            $password = $encoder->encodePassword($arUsuario->getPassword(), $arUsuario->getsalt());
-            $arUsuario->setPassword($password);                       
-            $arUsuario->setusername($formUsuario->get('username')->getData());
-            $arUsuario->setnombreCorto($formUsuario->get('nombreCorto')->getData());
-            
-            $arUsuario->setrole($formUsuario->get('role')->getData());
-            $arUsuario->setemail($formUsuario->get('username')->getData());
-            $arUsuario->setisActive($formUsuario->get('isActive')->getData());
+            $password = $encoder->encodePassword($arrControles['TxtPassword'], $arUsuario->getSalt());
+            $arUsuario->setPassword($password);                        
+            $arUsuario->setUsername($arrControles['TxtUsuario']);
+            $arUsuario->setNombreCorto($arrControles['TxtNombreCorto']);
+            $arUsuario->setEmail($arrControles['TxtUsuario']);            
             $em->persist($arUsuario);
             $em->flush();
-            return $this->redirect($this->generateUrl('clima_usuarios_listar'));
+            return $this->redirect($this->generateUrl('login'));
         }
-
-        return $this->render('climaFrontendBundle:Security:nuevo.html.twig', array(
-            'formUsuario' => $formUsuario->createView(),
-        ));
+        return $this->render('climaFrontendBundle:Security:nuevo.html.twig');
     }
     
-  public function editarAction($id) {
+    public function editarAction($id) {
         $em = $this->getDoctrine()->getManager();
         $request = $this->getRequest();
         $arUsuario = new \clima\FrontendBundle\Entity\User();

@@ -9,8 +9,7 @@
             
             <th>Id</th>
             <th>{{ knp_pagination_sortable(arUsuarios, 'username', 'nombreCorto') }}</th> 
-            <th>Nombre Corto</th>
-            <th>Rol</th>
+            <th>Nombre Corto</th>            
             <th>Email</th>
             <th></th>
         </tr>
@@ -19,8 +18,7 @@
                <tr>
                 <td>{{arUsuarios.id}}</td>
                 <td>{{arUsuarios.username}}</td>
-                <td>{{arUsuarios.nombreCorto}}</td>
-                <td>{{arUsuarios.role}}</td>
+                <td>{{arUsuarios.nombreCorto}}</td>                
                 <td>{{arUsuarios.email}}</td>
                 <td><a href="{{ path('clima_usuarios_editar',{'id': arUsuarios.id})}}">Editar</a></td>
                 <td><input type="checkbox" name="ChkSeleccionar[]" value="{{ arUsuarios.id }}" /></td>

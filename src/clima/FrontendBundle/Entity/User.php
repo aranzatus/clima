@@ -2,25 +2,13 @@
 
 namespace clima\FrontendBundle\Entity;
 
-
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntityValidator;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Entity
+ *
  * @ORM\Table(name="rhu_users")
- * @UniqueEntity(
- * fields={"username"},
- * errorPath="username",
- * message="Ya existe el usuario"
- * )
- * @UniqueEntity(
- * fields={"email"},
- * errorPath="email",
- * message="Ya existe el Email"
- * )
+ * @ORM\Entity(repositoryClass="clima\FrontendBundle\Entity\UserRepository")
  */
 class User implements UserInterface, \Serializable
 {
@@ -52,11 +40,6 @@ class User implements UserInterface, \Serializable
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=50)
-     */
-    private $role;
-    
-    /**
      * @ORM\Column(type="string", length=255, unique=true)
      */
     private $email;
@@ -66,35 +49,76 @@ class User implements UserInterface, \Serializable
      */
     private $isActive;
 
-        
-    public function eraseCredentials() {
-        
+    
+    
+    public function __construct()
+    {
+        $this->isActive = true;
+        $this->salt = md5(uniqid(null, true));
     }
 
-    public function getPassword() {
-        
+    /**
+     * @inheritDoc
+     */
+    public function getUsername()
+    {
+        return $this->username;
     }
 
-    public function getRoles() {
-        
+    /**
+     * @inheritDoc
+     */
+    public function getSalt()
+    {
+        return $this->salt;
     }
 
-    public function getSalt() {
-        
+    /**
+     * @inheritDoc
+     */
+    public function getPassword()
+    {
+        return $this->password;
     }
 
-    public function getUsername() {
-        
+    /**
+     * @inheritDoc
+     */
+    public function getRoles()
+    {
+        return array('ROLE_USER');
     }
 
-    public function serialize() {
-        
+    /**
+     * @inheritDoc
+     */
+    public function eraseCredentials()
+    {
     }
 
-    public function unserialize($serialized) {
-        
+    /**
+     * @see \Serializable::serialize()
+     */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+        ));
     }
 
+    /**
+     * @see \Serializable::unserialize()
+     */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+        ) = unserialize($serialized);
+    }
+
+    public function equals(UserInterface $user) {
+        
+    }
 
     /**
      * Get id
@@ -110,13 +134,70 @@ class User implements UserInterface, \Serializable
      * Set username
      *
      * @param string $username
-     * @return User
      */
     public function setUsername($username)
     {
         $this->username = $username;
+    }
 
-        return $this;
+    /**
+     * Set salt
+     *
+     * @param string $salt
+     */
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean 
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
     }
 
     /**
@@ -140,100 +221,5 @@ class User implements UserInterface, \Serializable
     public function getNombreCorto()
     {
         return $this->nombreCorto;
-    }
-
-    /**
-     * Set salt
-     *
-     * @param string $salt
-     * @return User
-     */
-    public function setSalt($salt)
-    {
-        $this->salt = $salt;
-
-        return $this;
-    }
-
-    /**
-     * Set password
-     *
-     * @param string $password
-     * @return User
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Set role
-     *
-     * @param string $role
-     * @return User
-     */
-    public function setRole($role)
-    {
-        $this->role = $role;
-
-        return $this;
-    }
-
-    /**
-     * Get role
-     *
-     * @return string 
-     */
-    public function getRole()
-    {
-        return $this->role;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     * @return User
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string 
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Set isActive
-     *
-     * @param boolean $isActive
-     * @return User
-     */
-    public function setIsActive($isActive)
-    {
-        $this->isActive = $isActive;
-
-        return $this;
-    }
-
-    /**
-     * Get isActive
-     *
-     * @return boolean 
-     */
-    public function getIsActive()
-    {
-        return $this->isActive;
     }
 }

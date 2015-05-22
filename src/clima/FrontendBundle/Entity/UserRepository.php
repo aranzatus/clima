@@ -1,6 +1,6 @@
 <?php
 
-namespace Brasa\SeguridadBundle\Entity;
+namespace clima\FrontendBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
