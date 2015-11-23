@@ -4,7 +4,7 @@ namespace clima\FrontendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  *
  * @ORM\Table(name="rhu_users")
@@ -21,6 +21,9 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=50, unique=true)
+     * @Assert\Email(
+     * message = "El mail '{{ value }}' ingresado no tiene el formato correcto.",
+     * )
      */
     private $username;
 
@@ -44,6 +47,11 @@ class User implements UserInterface, \Serializable
      */
     private $email;
 
+    /**
+     * @ORM\Column(name="codigo_centro_costo_fk", type="integer", nullable=true)
+     */    
+    private $codigoCentroCostoFk;
+    
     /**
      * @ORM\Column(name="is_active", type="boolean")
      */
@@ -221,5 +229,28 @@ class User implements UserInterface, \Serializable
     public function getNombreCorto()
     {
         return $this->nombreCorto;
+    }
+
+    /**
+     * Set codigoCentroCostoFk
+     *
+     * @param integer $codigoCentroCostoFk
+     * @return User
+     */
+    public function setCodigoCentroCostoFk($codigoCentroCostoFk)
+    {
+        $this->codigoCentroCostoFk = $codigoCentroCostoFk;
+
+        return $this;
+    }
+
+    /**
+     * Get codigoCentroCostoFk
+     *
+     * @return integer 
+     */
+    public function getCodigoCentroCostoFk()
+    {
+        return $this->codigoCentroCostoFk;
     }
 }

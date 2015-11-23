@@ -1,25 +1,36 @@
 {% extends '::base.html.twig' %}
-
+ 
 {% block body %}
-            
-    <div class="paa">
-        
-        {{ form_start(formUsuario, { 'attr': {'class': 'form-horizontal'} }) }}
-        {{ form_errors(formUsuario) }}
-            <h2 align="center">Usuario Nuevo</h2>
-            {{ form_widget(formUsuario.username, { 'attr': {'placeholder': 'Ingrese Email','class': 'form-control'}}) }}
-                {% if form_errors(formUsuario.username) %}
-                    <div class="alert alert-danger" role="alert">{{ form_errors(formUsuario.username) }}</div>
-                {% endif %}       
-            {{ form_widget(formUsuario.password, { 'attr': {'placeholder': 'Ingrese password','class': 'form-control'}}) }}
-            {{ form_widget(formUsuario.nombreCorto, { 'attr': {'placeholder': 'Ingrese Nombre','class': 'form-control'}}) }}
-            {{ form_widget(formUsuario.role, { 'attr': {'placeholder': 'Ingrese Nombre','class': 'form-control'}}) }}
-            {{ form_widget(formUsuario.save, { 'attr': {'class': 'btn btn-lg btn-success btn-block'}}) }}
-                <input type="button" value="Volver" onClick=" window.location.href='{{ path('clima_usuarios_listar')}}' " class="btn btn-lg btn-primary btn-block"></td>
-        
     
-    {{ form_rest(formUsuario) }}
-    {{ form_end(formUsuario) }}
-       
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>{% block title %}Editar!{% endblock %}</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="paa">
+                
+            <form class="form-signin" role="form" action="{{path('clima_usuarios_editar',{'id': arUsuario.id}) }}" method="post">
+                <h2 class="form-signin-heading">Editar</h2>                
+                <input type="email" class="form-control" placeholder="Usuario" id="username" name="TxtUsuario" value="{{arUsuario.username}}" required autofocus>
+                <input type="password" class="form-control" placeholder="Contraseña" id="password" name="TxtPassword" value="{{arUsuario.password}}" required>                
+                
+                <input type="text" class="form-control" placeholder="Nombre Corto" id="nombrecorto" name="TxtNombreCorto" value="{{arUsuario.nombreCorto}}" required/><br/>
+                
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Guardar</button>                          
+                <a class="btn btn-lg btn-primary btn-block" href="{{ path('clima_usuarios_listar') }}">Volver</a>
+                <center>       
+            </form>
+                
+        </div>
+        </div>
+    </body>
+</html>
 {% endblock %}

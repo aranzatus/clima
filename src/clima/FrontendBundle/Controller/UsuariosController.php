@@ -47,7 +47,7 @@ class UsuariosController extends Controller {
             $arrControles = $request->request->All();
             $arUsuario = new \clima\FrontendBundle\Entity\User();            
             $factory = $this->get('security.encoder_factory');                        
-            $encoder = $factory->getEncoder($arUsuario);            
+            $encoder = $factory->getEncoder($arUsuario);
             $password = $encoder->encodePassword($arrControles['TxtPassword'], $arUsuario->getSalt());
             $arUsuario->setPassword($password);                        
             $arUsuario->setUsername($arrControles['TxtUsuario']);
@@ -61,38 +61,38 @@ class UsuariosController extends Controller {
     }
     
     public function editarAction($id) {
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getEntityManager();
         $request = $this->getRequest();
         $arUsuario = new \clima\FrontendBundle\Entity\User();
         $arUsuario = $em->getRepository('climaFrontendBundle:User')->find($id);
-        $formUsuario = $this->createFormBuilder($arUsuario)        
-            ->add('username','email', array('data' => $arUsuario->getemail()))
-            ->add('password','password')
-            ->add('nombreCorto','text', array('data' => $arUsuario->getnombreCorto()))
-            ->add('role', 'choice', array('choices' => array($arUsuario->getrole() => $arUsuario->getrole(), 'admin' => 'Administrador','user'=>'Usuario')))
-            ->add('nombreCorto','text', array('data' => $arUsuario->getnombreCorto()))
-            ->add('isActive','text', array('data' => 1))
-            ->add('save', 'submit', array('label'  => 'Guardar'))
-            ->getForm();
-        $formUsuario->handleRequest($request);
         
-        if ($formUsuario->isValid())
-        {
-            // guardar la tarea en la base de datos
-            $arUsuario->setusername($formUsuario->get('username')->getData());
-            $arUsuario->setPassword($formUsuario->get('password')->getData());
-            $arUsuario->setnombreCorto($formUsuario->get('nombreCorto')->getData());
-            $arUsuario->setsalt($formUsuario->get('username')->getData());
-            $arUsuario->setrole($formUsuario->get('role')->getData());
-            $arUsuario->setemail($formUsuario->get('username')->getData());
-            $arUsuario->setisActive($formUsuario->get('isActive')->getData());
-            $em->persist($arUsuario);
-            $em->flush();
-            return $this->redirect($this->generateUrl('clima_usuarios_listar'));
+        if ($request->getMethod() == 'POST') {            
+            $arrControles = $request->request->All();
+            $factory = $this->get('security.encoder_factory');                        
+            $encoder = $factory->getEncoder($arUsuario);            
+            $password = $encoder->encodePassword($arrControles['TxtPassword'], $arUsuario->getSalt());
+                                    
+            if ($arUsuario->getPassword() == $arrControles['TxtPassword'] )
+            {    
+                $arUsuario->setUsername($arrControles['TxtUsuario']);
+                $arUsuario->setNombreCorto($arrControles['TxtNombreCorto']);
+                $arUsuario->setEmail($arrControles['TxtUsuario']);            
+                $em->persist($arUsuario);
+                $em->flush();
+                return $this->redirect($this->generateUrl('clima_usuarios_listar'));
+            }
+            else
+            {
+                $arUsuario->setPassword($password);
+                $arUsuario->setUsername($arrControles['TxtUsuario']);
+                $arUsuario->setNombreCorto($arrControles['TxtNombreCorto']);
+                $arUsuario->setEmail($arrControles['TxtUsuario']);            
+                $em->persist($arUsuario);
+                $em->flush();
+                return $this->redirect($this->generateUrl('clima_usuarios_listar'));
+            }
         }
-
         return $this->render('climaFrontendBundle:Security:editar.html.twig', array(
-            'formUsuario' => $formUsuario->createView(),
-        ));
+                    'arUsuario' => $arUsuario));
     }
 }

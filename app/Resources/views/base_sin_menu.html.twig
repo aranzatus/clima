@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}JG Efectivos!{% endblock %}</title>
+        {% block stylesheets %}
+            <link href="{{ asset('bootstrap-3.3.2-dist/css/bootstrap.min.css') }}" type="text/css" rel="stylesheet" />
+            <link href="{{ asset('css/jquery-ui.css') }}" type="text/css" rel="stylesheet" /> 
+            <link href="{{ asset('css/general.css') }}" rel="stylesheet" />
+        {% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('js/jquery-1.10.2.min.js') }}"></script>
+            <script src="{{ asset('js/jquery-ui.js') }}"></script>
+            <script src="{{ asset('bootstrap-3.3.2-dist/js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('js/general.js') }}"></script> 
+        {% endblock %}            
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% block body %}            
+            {% block content %}
+
+            {% endblock %}         
+        {% endblock %}
+
+    </body>
+</html>

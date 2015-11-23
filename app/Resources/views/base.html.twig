@@ -8,7 +8,6 @@
             <link href="{{ asset('css/jquery-ui.css') }}" type="text/css" rel="stylesheet" /> 
             <link href="{{ asset('css/general.css') }}" rel="stylesheet" />
             <link href="{{ asset('css/menu.css') }}" rel="stylesheet" />
-            <link href="{{ asset('csspersonalizado/styles.css') }}" type="text/css" rel="stylesheet" />
         {% endblock %}
         {% block javascripts %}
             <script src="{{ asset('js/jquery-1.10.2.min.js') }}"></script>
@@ -19,11 +18,11 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-     
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        
+            <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="{{ path('clima_inicio') }}">Frontend!</a>
+            <a class="navbar-brand" href="{{ path('clima_inicio') }}">JG Efectivos V1.0.0</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -33,68 +32,280 @@
                         <li class="dropdown-submenu">
                             <a tabindex="-1" href="#">General</a>
                             <ul class="dropdown-menu">
-                                <li><a href="">Terceros</a></li>
+                                <li><a href="{{ path('clima_inicio') }}">Terceros</a></li>
                             </ul>
                         </li>
                         <li class="dropdown-submenu">
                             <a tabindex="-1" href="#">Inventario</a>
                             <ul class="dropdown-menu">
-                                <li><a href="">Documentos</a></li>
-                                <li><a href="">Lista precios</a></li>
-                                <li><a href="">Lista costos</a></li>
+                                <li><a href="{{ path('clima_inicio') }}">Documentos</a></li>
+                                <li><a href="{{ path('clima_inicio') }}">Lista precios</a></li>
+                                <li><a href="{{ path('clima_inicio') }}">Lista costos</a></li>
                                 <li class="dropdown-submenu">
                                     <a tabindex="-1" href="#">Productos</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="">Lista</a></li>
-                                        <li><a href="">Marcas</a></li>
-                                        <li><a href="">Unidades medida</a></li>
-                                        <li><a href="">Lineas</a></li>
-                                        <li><a href="">Grupos</a></li>
-                                        <li><a href="">Subgrupos</a></li>
+                                        <li><a href="{{ path('clima_inicio') }}">Lista</a></li>
+                                        <li><a href="{{ path('clima_inicio') }}">Marcas</a></li>
+                                        <li><a href="{{ path('clima_inicio') }}">Unidades medida</a></li>
+                                        <li><a href="{{ path('clima_inicio') }}">Lineas</a></li>
+                                        <li><a href="{{ path('clima_inicio') }}">Grupos</a></li>
+                                        <li><a href="{{ path('clima_inicio') }}">Subgrupos</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="">Bodegas</a></li>
+                                <li><a href="{{ path('clima_inicio') }}">Bodegas</a></li>
                             </ul>
                         </li>
                         <li class="dropdown-submenu">
                             <a tabindex="-1" href="#">Transporte</a>
                             <ul class="dropdown-menu">
-                                <li><a href="">Rutas</a></li>
-                                <li><a href="">Conductores</a></li>
+                                <li><a href="{{ path('clima_inicio') }}">Rutas</a></li>
+                                <li><a href="{{ path('clima_inicio') }}">Conductores</a></li>
                             </ul>
                         </li>
                         <li class="dropdown-submenu">
                             <a tabindex="-1" href="#">Recursos humanos</a>
                             <ul class="dropdown-menu">
-                                <li><a href="">Centros de costo</a></li>
-                                <li><a href="">Empleados</a></li>
+                                <li><a href="{{ path('clima_inicio') }}">Centros de costo</a></li>
+                                <li><a href="{{ path('clima_inicio') }}">Empleados</a></li>
+                                <li><a href="{{ path('clima_inicio') }}">Salud</a></li>
+                                <li><a href="{{ path('clima_inicio') }}">Pension</a></li>
                             </ul>
                         </li>
                     </ul>
                 </li>
-                
-               <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Procesos <b class="caret"></b></a>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consultas <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li class="dropdown-submenu">
-                            <a tabindex="-1" href="#">Usuarios</a>
-                            <a tabindex="-1" href="#">Otro</a>
+                            <a tabindex="-1" href="#">Inventario</a>
                             <ul class="dropdown-menu">
-                                <li>
-                                    <a href="{{ path('clima_usuarios_listar') }}">Listar</a>
-                                    <a href="{{ path('clima_usuarios_nuevo') }}">Nuevo</a>
+                                <li><a href="{{ path('clima_inicio') }}">Kardex</a></li>
+                                <li><a href="{{ path('clima_inicio') }}">Disponibles</a></li>
+                                <li><a href="{{ path('clima_inicio') }}">Existencias</a></li>
+                                <li><a href="{{ path('clima_inicio') }}">Inventario valorizado</a></li>
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">Movimienos</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="#">Solicitudes</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="{{ path('clima_inicio', { 'codigoDocumentoTipo': 8 }) }}">Detalles (Pendientes)</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="#">Ordenes de compra</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="{{ path('clima_inicio', { 'codigoDocumentoTipo': 5 }) }}">Detalles (Pendientes)</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="#">Pedidos</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="{{ path('clima_inicio', { 'codigoDocumentoTipo': 3 }) }}">Detalles (Pendientes)</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="#">Remision</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="{{ path('clima_inicio', { 'codigoDocumentoTipo': 9 }) }}">Detalles (Pendientes)</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a tabindex="-1" href="#">Transporte</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">Logistica</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{ path('clima_inicio') }}">Pendientes por despachar</a></li>
+                                        <li><a href="{{ path('clima_inicio') }}">Novedades pendientes</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">Control</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{ path('clima_inicio') }}">Recibos caja</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">Comercial</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{ path('clima_inicio') }}">Pendientes por facturar</a></li>
+                                    </ul>
                                 </li>
                             </ul>
                         </li>
                     </ul>
                 </li>
-                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Procesos <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-submenu">
+                            <a tabindex="-1" href="#">Inventario</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">Regenerar</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{ path('clima_inicio') }}">Kardex</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Utilidades <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-submenu">
+                            <a tabindex="-1" href="#">Recursos humanos</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">Pago nomina</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{ path('clima_inicio') }}">Generar periodos de pago</a></li>
+                                        <li><a href="{{ path('clima_inicio') }}">Generar pago</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">Notificaciones</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{ path('clima_inicio') }}">Cierre programacion pago</a></li>                                        
+                                    </ul>
+                                </li>                                
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Movimientos <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-submenu">
+                            <a tabindex="-1" href="#">Inventario</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ path('clima_inicio', { 'codigoTipoDocumento': 8 }) }}">Solicitudes</a></li>
+                                <li><a href="{{ path('clima_inicio', { 'codigoTipoDocumento': 5 }) }}">Ordenes de compra</a></li>
+                                <li><a href="{{ path('clima_inicio', { 'codigoTipoDocumento': 1 }) }}">Compras</a></li>
+                                <li><a href="{{ path('clima_inicio', { 'codigoTipoDocumento': 6 }) }}">Entradas</a></li>
+                                <li><a href="{{ path('clima_inicio', { 'codigoTipoDocumento': 2 }) }}">Salidas</a></li>
+                                <li><a href="{{ path('clima_inicio', { 'codigoTipoDocumento': 10 }) }}">Traslados</a></li>
+                                <li><a href="{{ path('clima_inicio', { 'codigoTipoDocumento': 3 }) }}">Pedidos</a></li>
+                                <li><a href="{{ path('clima_inicio', { 'codigoTipoDocumento': 9 }) }}">Remisiones</a></li>
+                                <li><a href="{{ path('clima_inicio', { 'codigoTipoDocumento': 4 }) }}">Facturas</a></li>
+                                <li><a href="{{ path('clima_inicio', { 'codigoTipoDocumento': 7 }) }}">Orden de produccion</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a tabindex="-1" href="#">Transporte</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">Logistica</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="#">Recogidas</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="{{ path('clima_inicio') }}">Lista</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="{{ path('clima_inicio') }}">Programacion</a></li>
+                                                <li><a href="{{ path('clima_inicio') }}">Generar recogidas programadas</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="#">Guias</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="{{ path('clima_inicio') }}">Lista</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="{{ path('clima_inicio') }}">Fechas de entrega</a></li>
+                                                <li><a href="{{ path('clima_inicio') }}">Descargar</a></li>
+                                                <li><a href="{{ path('clima_inicio') }}">Redespachos</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="#">Despachos</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="{{ path('clima_inicio') }}">Lista</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="#">Relaciones cumplidos</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="{{ path('clima_inicio') }}">Lista</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">Monitoreo</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="#">Vehiculos</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="{{ path('clima_inicio') }}">Ver</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">Comercial</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="-1" href="#">Facturas</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="{{ path('clima_inicio') }}">Lista</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a tabindex="-1" href="#">Recurso humano</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">Pagos</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{ path('clima_inicio') }}">Lista</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">Creditos</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{ path('clima_inicio') }}">Lista</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">Adicionales</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{ path('clima_inicio') }}">Lista</a></li>
+                                        <li><a href="{{ path('clima_inicio') }}">Generar masivo</a></li>
+                                    </ul>
+                                </li>      
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">Incapacidades</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{ path('clima_inicio') }}">Lista</a></li>
+                                    </ul>
+                                </li>                                
+                                <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">Facturas</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{ path('clima_inicio') }}">Lista</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> {{ app.user.username }}<b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> {{ app.User.username }}<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Configuracion</a></li>                        
+                        <li><a href="#">Configuracion</a></li>
+                        <li><a href="#">Seguridad</a></li>
+                        <li><a href="#">Parametrizacion</a></li>
                         <li class="divider"></li>
                         <li><a href="{{ path('logout') }}">Salir</a></li>
                     </ul>
@@ -103,9 +314,8 @@
         </div>
     </div>
 </div>
-{% block body %}
-            {{ render(controller('BrasaGeneralBundle:Default:menu')) }}
-            {% for flashMessage in app.session.flashbag.get('informacion') %}
+            {% block body %}
+                        {% for flashMessage in app.session.flashbag.get('informacion') %}
                 <div id="informacion" class="alert alert-info fade in" >
                      <button type="button" class="close" data-dismiss="alert">&times;</button>
                      <p>{{ flashMessage }}</p>
@@ -121,6 +331,6 @@
 
             {% endblock %}         
         {% endblock %}
+
     </body>
-    
 </html>
